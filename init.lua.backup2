@@ -169,10 +169,6 @@ require("lazy").setup({
     "nvim-tree/nvim-tree.lua",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      -- Netrw'yi tamamen devre dışı bırak
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
       require("nvim-tree").setup({
         view = {
           width = 30,
@@ -415,9 +411,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -- YENİ PLUGIN KEYBİNDLER
 -- ===============================================
 
--- NvimTree - Netrw yerine
+-- NvimTree
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'File tree aç/kapat' })
-vim.keymap.set('n', '<leader>ef', ':NvimTreeFocus<CR>', { desc = 'File tree focus' })
 
 -- LSP keybindings
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Definition\'a git' })
@@ -490,8 +485,12 @@ vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Dosyayı kaydet' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Çık' })
 vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = 'Kaydet ve çık' })
 
--- Netrw tamamen devre dışı (NvimTree kullanıyoruz)
--- Artık kullanmıyoruz, NvimTree plugin konfigürasyonunda devre dışı bırakıldı
+-- Netrw (built-in file explorer) ayarları
+vim.g.netrw_banner = 0             -- Banner'ı gizle
+vim.g.netrw_browse_split = 0       -- Aynı pencerede aç
+vim.g.netrw_altv = 1               -- Vertical split sağda
+vim.g.netrw_winsize = 25           -- Pencere boyutu
+vim.keymap.set('n', '<leader>e', ':Explore<CR>', { desc = 'File explorer aç' })
 
 -- Auto commands
 local autocmd = vim.api.nvim_create_autocmd
