@@ -1,36 +1,36 @@
 -- ~/.config/nvim/init.lua
 
 -- Temel ayarlar
-vim.opt.number = true              -- Satır numaralarını göster
-vim.opt.relativenumber = true      -- Göreceli satır numaraları
-vim.opt.mouse = 'a'                -- Mouse desteğini etkinleştir
-vim.opt.ignorecase = true          -- Aramada büyük/küçük harf duyarsız
-vim.opt.smartcase = true           -- Büyük harf varsa duyarlı ol
-vim.opt.hlsearch = false           -- Arama vurgulamasını kapat
-vim.opt.wrap = false               -- Satır sarmalamayı kapat
-vim.opt.breakindent = true         -- Wrapped satırlarda indent koru
-vim.opt.tabstop = 4                -- Tab boyutu
-vim.opt.shiftwidth = 4             -- Indent boyutu
-vim.opt.expandtab = true           -- Tab yerine space kullan
-vim.opt.smartindent = true         -- Akıllı indentleme
-vim.opt.termguicolors = true       -- True color desteği
-vim.opt.signcolumn = 'yes'         -- Sign column'u her zaman göster
-vim.opt.updatetime = 250           -- Güncelleme süresi
-vim.opt.timeoutlen = 300           -- Key mapping timeout
-vim.opt.scrolloff = 10             -- Cursor etrafında minimum satır sayısı
-vim.opt.sidescrolloff = 8          -- Cursor etrafında minimum sütun sayısı
+vim.opt.number = true -- Satır numaralarını göster
+vim.opt.relativenumber = true -- Göreceli satır numaraları
+vim.opt.mouse = "a" -- Mouse desteğini etkinleştir
+vim.opt.ignorecase = true -- Aramada büyük/küçük harf duyarsız
+vim.opt.smartcase = true -- Büyük harf varsa duyarlı ol
+vim.opt.hlsearch = false -- Arama vurgulamasını kapat
+vim.opt.wrap = false -- Satır sarmalamayı kapat
+vim.opt.breakindent = true -- Wrapped satırlarda indent koru
+vim.opt.tabstop = 4 -- Tab boyutu
+vim.opt.shiftwidth = 4 -- Indent boyutu
+vim.opt.expandtab = true -- Tab yerine space kullan
+vim.opt.smartindent = true -- Akıllı indentleme
+vim.opt.termguicolors = true -- True color desteği
+vim.opt.signcolumn = "yes" -- Sign column'u her zaman göster
+vim.opt.updatetime = 250 -- Güncelleme süresi
+vim.opt.timeoutlen = 300 -- Key mapping timeout
+vim.opt.scrolloff = 10 -- Cursor etrafında minimum satır sayısı
+vim.opt.sidescrolloff = 8 -- Cursor etrafında minimum sütun sayısı
 vim.opt.guicursor = "i-ci-ve:block" -- Insertte Block Cursor
 
 -- Syntax highlighting'i etkinleştir
-vim.cmd('syntax on')
-vim.cmd('filetype plugin indent on')
+vim.cmd("syntax on")
+vim.cmd("filetype plugin indent on")
 
 -- Clipboard sistem panosunu kullan
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Split ayarları
-vim.opt.splitbelow = true          -- Yatay split aşağıda açılsın
-vim.opt.splitright = true          -- Dikey split sağda açılsın
+vim.opt.splitbelow = true -- Yatay split aşağıda açılsın
+vim.opt.splitright = true -- Dikey split sağda açılsın
 
 -- Backup ve swap dosyalarını kapat
 vim.opt.backup = false
@@ -38,8 +38,8 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 
 -- Temel keybindler
-vim.g.mapleader = ' '              -- Leader key'i space yap
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " " -- Leader key'i space yap
+vim.g.maplocalleader = " "
 
 -- ===============================================
 -- PAKET YÖNETİCİSİ: Lazy.nvim
@@ -48,333 +48,419 @@ vim.g.maplocalleader = ' '
 -- Lazy.nvim'i bootstrap et
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- Plugin'leri yükle
 require("lazy").setup({
-  -- ===============================================
-  -- TREESITTER - Modern Syntax Highlighting
-  -- ===============================================
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        -- Yüklenecek diller
-        ensure_installed = {
-          "python",
-          "javascript",
-          "typescript",
-          "tsx",
-          "html",
-          "css",
-          "json",
-          "lua",
-          "bash",
-          "markdown",
-          "yaml",
-          "toml",
-          "vim",
-          "vimdoc",
-          "go",
-          "rust",
-          "c",
-          "cpp",
-        },
+	-- ===============================================
+	-- TREESITTER - Modern Syntax Highlighting
+	-- ===============================================
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				-- Yüklenecek diller
+				ensure_installed = {
+					"python",
+					"javascript",
+					"typescript",
+					"tsx",
+					"html",
+					"css",
+					"json",
+					"lua",
+					"bash",
+					"markdown",
+					"yaml",
+					"toml",
+					"vim",
+					"vimdoc",
+					"go",
+					"rust",
+					"c",
+					"cpp",
+				},
 
-        -- Otomatik yükleme
-        auto_install = true,
+				-- Otomatik yükleme
+				auto_install = true,
 
-        -- Syntax highlighting
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
+				-- Syntax highlighting
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
 
-        -- Indentation
-        indent = {
-          enable = true,
-        },
+				-- Indentation
+				indent = {
+					enable = true,
+				},
 
-        -- Incremental selection
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
-          },
-        },
-      })
-    end,
-  },
+				-- Incremental selection
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "gnn",
+						node_incremental = "grn",
+						scope_incremental = "grc",
+						node_decremental = "grm",
+					},
+				},
+			})
+		end,
+	},
 
-  -- ===============================================
-  -- TELESCOPE - Fuzzy Finder
-  -- ===============================================
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        cond = function()
-          return vim.fn.executable "make" == 1
-        end,
-      },
-    },
-    config = function()
-      require("telescope").setup({
-        defaults = {
-          mappings = {
-            i = {
-              ["<C-u>"] = false,
-              ["<C-d>"] = false,
-            },
-          },
-        },
-        pickers = {
-          find_files = {
-            theme = "dropdown",
-          },
-          live_grep = {
-            theme = "dropdown",
-          },
-          buffers = {
-            theme = "dropdown",
-          },
-        },
-      })
+	-- ===============================================
+	-- TELESCOPE - Fuzzy Finder
+	-- ===============================================
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				cond = function()
+					return vim.fn.executable("make") == 1
+				end,
+			},
+		},
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<C-u>"] = false,
+							["<C-d>"] = false,
+						},
+					},
+				},
+				pickers = {
+					find_files = {
+						theme = "dropdown",
+					},
+					live_grep = {
+						theme = "dropdown",
+					},
+					buffers = {
+						theme = "dropdown",
+					},
+				},
+			})
 
-      -- FZF extension'ı yükle (eğer varsa)
-      pcall(require("telescope").load_extension, "fzf")
-    end,
-  },
+			-- FZF extension'ı yükle (eğer varsa)
+			pcall(require("telescope").load_extension, "fzf")
+		end,
+	},
 
-  -- ===============================================
-  -- DOSYA YÖNETİMİ
-  -- ===============================================
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      -- Netrw'yi tamamen devre dışı bırak
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
+	-- ===============================================
+	-- DOSYA YÖNETİMİ
+	-- ===============================================
+	{
+		"nvim-tree/nvim-tree.lua",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			-- Netrw'yi tamamen devre dışı bırak
+			vim.g.loaded_netrw = 1
+			vim.g.loaded_netrwPlugin = 1
 
-      require("nvim-tree").setup({
-        view = {
-          width = 30,
-        },
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = false,
-        },
-      })
-    end,
-  },
+			require("nvim-tree").setup({
+				view = {
+					width = 30,
+				},
+				renderer = {
+					group_empty = true,
+				},
+				filters = {
+					dotfiles = false,
+				},
+			})
+		end,
+	},
 
-  -- ===============================================
-  -- GIT ENTEGRASYONU
-  -- ===============================================
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("gitsigns").setup({
-        signs = {
-          add = { text = "+" },
-          change = { text = "~" },
-          delete = { text = "_" },
-          topdelete = { text = "‾" },
-          changedelete = { text = "~" },
-        },
-      })
-    end,
-  },
+	-- ===============================================
+	-- GIT ENTEGRASYONU
+	-- ===============================================
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup({
+				signs = {
+					add = { text = "+" },
+					change = { text = "~" },
+					delete = { text = "_" },
+					topdelete = { text = "‾" },
+					changedelete = { text = "~" },
+				},
+			})
+		end,
+	},
 
-  -- ===============================================
-  -- OTOMATIK TAMAMLAMA VE LSP
-  -- ===============================================
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
-    config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "pyright",           -- Python
-          "ts_ls",            -- TypeScript/JavaScript (yeni ad)
-          "html",             -- HTML
-          "cssls",            -- CSS
-          "lua_ls",           -- Lua
-        },
-      })
+	-- ===============================================
+	-- CODE FORMATTING - CONFORM.NVIM
+	-- ===============================================
+	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					-- Python formatters
+					python = { "black", "isort" },
 
-      local lspconfig = require("lspconfig")
+					-- JavaScript/TypeScript formatters
+					javascript = { "prettier" },
+					typescript = { "prettier" },
+					javascriptreact = { "prettier" },
+					typescriptreact = { "prettier" },
 
-      -- Python
-      lspconfig.pyright.setup({})
+					-- Web formatters
+					html = { "prettier" },
+					css = { "prettier" },
+					scss = { "prettier" },
+					json = { "prettier" },
+					yaml = { "prettier" },
+					markdown = { "prettier" },
 
-      -- TypeScript/JavaScript
-      lspconfig.ts_ls.setup({})
+					-- Config files
+					lua = { "stylua" },
 
-      -- HTML
-      lspconfig.html.setup({})
+					-- Diğer diller için prettier
+					vue = { "prettier" },
+					svelte = { "prettier" },
+				},
 
-      -- CSS
-      lspconfig.cssls.setup({})
+				-- Format on save ayarları
+				format_on_save = {
+					timeout_ms = 500,
+					lsp_fallback = true,
+				},
 
-      -- Lua
-      lspconfig.lua_ls.setup({
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
-            },
-          },
-        },
-      })
-    end,
-  },
+				-- Formatter ayarları
+				formatters = {
+					black = {
+						prepend_args = { "--line-length", "88" },
+					},
+					prettier = {
+						prepend_args = { "--tab-width", "2", "--single-quote", "true" },
+					},
+				},
+			})
+		end,
+	},
 
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-    },
-    config = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
+	-- ===============================================
+	-- MASON - FORMATTER VE LSP YÖNETİMİ
+	-- ===============================================
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = "williamboman/mason.nvim",
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					-- Python formatters
+					"black",
+					"isort",
 
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-        }, {
-          { name = "buffer" },
-        }),
-      })
-    end,
-  },
+					-- JavaScript/TypeScript formatter
+					"prettier",
 
-  -- ===============================================
-  -- KOD YAZIMI YARDIMCILARI
-  -- ===============================================
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup({})
-    end,
-  },
+					-- Lua formatter
+					"stylua",
 
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
+					-- LSP servers (mevcut olanlar)
+					"pyright",
+					"typescript-language-server",
+					"html-lsp",
+					"css-lsp",
+					"lua-language-server",
+				},
+				auto_update = false,
+				run_on_start = true,
+			})
+		end,
+	},
 
-  {
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup()
-    end,
-  },
+	-- ===============================================
+	-- OTOMATIK TAMAMLAMA VE LSP
+	-- ===============================================
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
+		config = function()
+			require("mason").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"pyright", -- Python
+					"ts_ls", -- TypeScript/JavaScript (yeni ad)
+					"html", -- HTML
+					"cssls", -- CSS
+					"lua_ls", -- Lua
+				},
+			})
 
-  -- ===============================================
-  -- GÖRSEL İYİLEŞTİRMELER
-  -- ===============================================
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("lualine").setup({
-        options = {
-          theme = "auto",
-          component_separators = "|",
-          section_separators = "",
-        },
-      })
-    end,
-  },
+			local lspconfig = require("lspconfig")
 
-  {
-    "akinsho/bufferline.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("bufferline").setup({})
-    end,
-  },
+			-- Python
+			lspconfig.pyright.setup({})
 
-  -- ===============================================
-  -- TERMINAL ENTEGRASYONU
-  -- ===============================================
-  {
-    "akinsho/toggleterm.nvim",
-    config = function()
-      require("toggleterm").setup({
-        size = 20,
-        open_mapping = [[<c-\>]],
-        hide_numbers = true,
-        shade_terminals = true,
-        start_in_insert = true,
-        insert_mappings = true,
-        direction = "float",
-        close_on_exit = true,
-        shell = vim.o.shell,
-      })
-    end,
-  },
+			-- TypeScript/JavaScript
+			lspconfig.ts_ls.setup({})
+
+			-- HTML
+			lspconfig.html.setup({})
+
+			-- CSS
+			lspconfig.cssls.setup({})
+
+			-- Lua
+			lspconfig.lua_ls.setup({
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+		end,
+	},
+
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+		},
+		config = function()
+			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-d>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+				}),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+				}, {
+					{ name = "buffer" },
+				}),
+			})
+		end,
+	},
+
+	-- ===============================================
+	-- KOD YAZIMI YARDIMCILARI
+	-- ===============================================
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	},
+
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	},
+
+	{
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
+
+	-- ===============================================
+	-- GÖRSEL İYİLEŞTİRMELER
+	-- ===============================================
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("lualine").setup({
+				options = {
+					theme = "auto",
+					component_separators = "|",
+					section_separators = "",
+				},
+			})
+		end,
+	},
+
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("bufferline").setup({})
+		end,
+	},
+
+	-- ===============================================
+	-- TERMINAL ENTEGRASYONU
+	-- ===============================================
+	{
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("toggleterm").setup({
+				size = 20,
+				open_mapping = [[<c-\>]],
+				hide_numbers = true,
+				shade_terminals = true,
+				start_in_insert = true,
+				insert_mappings = true,
+				direction = "float",
+				close_on_exit = true,
+				shell = vim.o.shell,
+			})
+		end,
+	},
 })
 
 -- ===============================================
@@ -383,48 +469,64 @@ require("lazy").setup({
 
 -- Python için
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.expandtab = true
-  end,
+	pattern = "python",
+	callback = function()
+		vim.opt_local.tabstop = 4
+		vim.opt_local.shiftwidth = 4
+		vim.opt_local.expandtab = true
+	end,
 })
 
 -- JavaScript/TypeScript için
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.expandtab = true
-  end,
+	pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.expandtab = true
+	end,
 })
 
 -- HTML/CSS için
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "css", "scss", "json" },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.expandtab = true
-  end,
+	pattern = { "html", "css", "scss", "json" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.expandtab = true
+	end,
 })
+
+-- ===============================================
+-- FORMATTING KEYBİNDLER
+-- ===============================================
+
+-- Manuel formatting
+vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+	require("conform").format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 1000,
+	})
+end, { desc = "Format file or range (in visual mode)" })
+
+-- Format info
+vim.keymap.set("n", "<leader>mi", "<cmd>ConformInfo<cr>", { desc = "Conform info" })
 
 -- ===============================================
 -- YENİ PLUGIN KEYBİNDLER
 -- ===============================================
 
 -- NvimTree - Netrw yerine
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'File tree aç/kapat' })
-vim.keymap.set('n', '<leader>ef', ':NvimTreeFocus<CR>', { desc = 'File tree focus' })
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File tree aç/kapat" })
+vim.keymap.set("n", "<leader>ef", ":NvimTreeFocus<CR>", { desc = "File tree focus" })
 
 -- LSP keybindings
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Definition\'a git' })
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'References göster' })
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover bilgi göster' })
-vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename' })
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code actions' })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition'a git" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References göster" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover bilgi göster" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 
 -- Terminal (Ctrl+\ ile açılır/kapanır)
 -- Otomatik keybind var
@@ -434,13 +536,13 @@ vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action
 -- ===============================================
 
 -- Telescope keybindings
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Dosya ara' })
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = 'Metin ara' })
-vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Buffer ara' })
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Help ara' })
-vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = 'Son dosyalar' })
-vim.keymap.set('n', '<leader>fc', require('telescope.builtin').commands, { desc = 'Komutlar' })
-vim.keymap.set('n', '<leader>fk', require('telescope.builtin').keymaps, { desc = 'Keymaps' })
+vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Dosya ara" })
+vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Metin ara" })
+vim.keymap.set("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "Buffer ara" })
+vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "Help ara" })
+vim.keymap.set("n", "<leader>fr", require("telescope.builtin").oldfiles, { desc = "Son dosyalar" })
+vim.keymap.set("n", "<leader>fc", require("telescope.builtin").commands, { desc = "Komutlar" })
+vim.keymap.set("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "Keymaps" })
 
 -- ===============================================
 -- KLASİK TEMA - ORİJİNAL NEOVIM VARSAYILAN
@@ -454,41 +556,41 @@ vim.keymap.set('n', '<leader>fk', require('telescope.builtin').keymaps, { desc =
 -- ===============================================
 
 -- Typo fix'leri
-vim.cmd('command! Q q')
-vim.cmd('command! Wq wq')
-vim.cmd('command! WQ wq')
-vim.cmd('command! W w')
-vim.cmd('command! Qa qa')
-vim.cmd('command! QA qa')
+vim.cmd("command! Q q")
+vim.cmd("command! Wq wq")
+vim.cmd("command! WQ wq")
+vim.cmd("command! W w")
+vim.cmd("command! Qa qa")
+vim.cmd("command! QA qa")
 
 -- Hızlı ESC için jk kombinasyonu
-vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode' })
+vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- Window navigasyonu
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Sol pencereye git' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Alt pencereye git' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Üst pencereye git' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Sağ pencereye git' })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Sol pencereye git" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Alt pencereye git" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Üst pencereye git" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Sağ pencereye git" })
 
 -- Buffer navigasyonu
-vim.keymap.set('n', '<S-h>', ':bprevious<CR>', { desc = 'Önceki buffer' })
-vim.keymap.set('n', '<S-l>', ':bnext<CR>', { desc = 'Sonraki buffer' })
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Önceki buffer" })
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Sonraki buffer" })
 
 -- Satır hareket ettirme
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Seçili satırları aşağı taşı' })
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Seçili satırları yukarı taşı' })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Seçili satırları aşağı taşı" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Seçili satırları yukarı taşı" })
 
 -- Search ve replace için merkezi konum
-vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Sonraki arama sonucu (merkezle)' })
-vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Önceki arama sonucu (merkezle)' })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Sonraki arama sonucu (merkezle)" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Önceki arama sonucu (merkezle)" })
 
 -- Arama vurgulamasını temizle
-vim.keymap.set('n', '<leader>h', ':nohl<CR>', { desc = 'Arama vurgulamasını temizle' })
+vim.keymap.set("n", "<leader>h", ":nohl<CR>", { desc = "Arama vurgulamasını temizle" })
 
 -- Dosya kaydetme
-vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Dosyayı kaydet' })
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Çık' })
-vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = 'Kaydet ve çık' })
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Dosyayı kaydet" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Çık" })
+vim.keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Kaydet ve çık" })
 
 -- Netrw tamamen devre dışı (NvimTree kullanıyoruz)
 -- Artık kullanmıyoruz, NvimTree plugin konfigürasyonunda devre dışı bırakıldı
@@ -498,21 +600,21 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 -- Highlight on yank
-autocmd('TextYankPost', {
-  group = augroup('highlight_yank', {}),
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+autocmd("TextYankPost", {
+	group = augroup("highlight_yank", {}),
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- Trailing whitespace'leri kaldır
-autocmd('BufWritePre', {
-  group = augroup('trim_whitespace', {}),
-  pattern = '*',
-  callback = function()
-    local save_cursor = vim.fn.getpos('.')
-    vim.cmd([[%s/\s\+$//e]])
-    vim.fn.setpos('.', save_cursor)
-  end,
+autocmd("BufWritePre", {
+	group = augroup("trim_whitespace", {}),
+	pattern = "*",
+	callback = function()
+		local save_cursor = vim.fn.getpos(".")
+		vim.cmd([[%s/\s\+$//e]])
+		vim.fn.setpos(".", save_cursor)
+	end,
 })
