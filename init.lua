@@ -2,7 +2,7 @@
 
 -- Temel ayarlar
 vim.opt.number = true -- Satır numaralarını göster
-vim.opt.relativenumber = true -- Göreceli satır numaraları
+vim.opt.relativenumber = false -- Göreceli satır numaraları
 vim.opt.mouse = "a" -- Mouse desteğini etkinleştir
 vim.opt.ignorecase = true -- Aramada büyük/küçük harf duyarsız
 vim.opt.smartcase = true -- Büyük harf varsa duyarlı ol
