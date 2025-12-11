@@ -312,22 +312,20 @@ require("lazy").setup({
 				},
 			})
 
-			local lspconfig = require("lspconfig")
+			-- PYRIGHT
+			vim.lsp.config("pyright", {})
 
-			-- Python
-			lspconfig.pyright.setup({})
-
-			-- TypeScript/JavaScript
-			lspconfig.ts_ls.setup({})
+			-- TS LS
+			vim.lsp.config("ts_ls", {})
 
 			-- HTML
-			lspconfig.html.setup({})
+			vim.lsp.config("html", {})
 
 			-- CSS
-			lspconfig.cssls.setup({})
+			vim.lsp.config("cssls", {})
 
-			-- Lua
-			lspconfig.lua_ls.setup({
+			-- LUA
+			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -459,6 +457,19 @@ require("lazy").setup({
 				close_on_exit = true,
 				shell = vim.o.shell,
 			})
+		end,
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			require("rose-pine").setup({
+				styles = {
+					italic = false,
+				},
+			})
+
+			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 })
