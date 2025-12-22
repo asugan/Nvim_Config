@@ -20,6 +20,7 @@ vim.opt.timeoutlen = 300 -- Key mapping timeout
 vim.opt.scrolloff = 10 -- Cursor etrafında minimum satır sayısı
 vim.opt.sidescrolloff = 8 -- Cursor etrafında minimum sütun sayısı
 vim.opt.guicursor = "i-ci-ve:block" -- Insertte Block Cursor
+vim.opt.wrap = true -- Wordwrap
 
 -- Syntax highlighting'i etkinleştir
 vim.cmd("syntax on")
