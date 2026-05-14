@@ -612,6 +612,20 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Sağ pencereye git" })
 -- Buffer navigasyonu
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Önceki buffer" })
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Sonraki buffer" })
+vim.keymap.set("n", "<leader>bd", function()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local buffers = vim.api.nvim_list_bufs()
+
+	if #buffers <= 1 then
+		return
+	end
+
+	-- Önce bir önceki buffer'a geç, sonra sil
+	vim.cmd("bprevious")
+	if vim.api.nvim_get_current_buf() ~= bufnr then
+		vim.api.nvim_buf_delete(bufnr, { force = true })
+	end
+end, { desc = "Buffer'ı kapat (otomatik geçiş)" })
 
 -- Satır hareket ettirme
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Seçili satırları aşağı taşı" })
