@@ -473,6 +473,28 @@ require("lazy").setup({
 			vim.cmd("colorscheme rose-pine")
 		end,
 	},
+	-- ===============================================
+	-- LAZYGIT ENTEGRASYONU
+	-- ===============================================
+	{
+		"kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- İsteğe bağlı: Telescope entegrasyonu için
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			-- LazyGit penceresi açıldığında arkadaki Buffer'ı değiştirmemesi için ayar
+			vim.g.lazygit_floating_window_winblend = 0 -- saydamlık
+			vim.g.lazygit_floating_window_corner_chars = { "╭", "╮", "╰", "╯" } -- köşe stili
+		end,
+	},
 })
 
 -- ===============================================
@@ -539,6 +561,9 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References göster" 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover bilgi göster" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
+
+-- LazyGit kısayolu
+vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "LazyGit'i aç" })
 
 -- Terminal (Ctrl+\ ile açılır/kapanır)
 -- Otomatik keybind var
